@@ -1,5 +1,7 @@
 # Automation Testing
 
+Before you clone this repository you should clone this repository [Crowdfunding Go](https://github.com/bagusprakasa/crowfunding).
+
 ### Automation test for project Go Crowdfunding
 
 ### After clone this repository you have to do some steps
