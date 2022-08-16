@@ -25,7 +25,6 @@ module.exports = function (password) {
         .end(function (err, res) {
           expect(res.status).to.equals(200);
           global.token = res.body.data.token;
-          console.log(global.token);
           done();
         });
     });

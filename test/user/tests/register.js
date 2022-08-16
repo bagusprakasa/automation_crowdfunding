@@ -27,7 +27,6 @@ module.exports = function (name, email, occupation, password) {
         .end(function (err, res) {
           expect(res.status).to.equals(200);
           global.email = res.body.data.email;
-          console.log(res.body.meta);
           done();
         });
     });

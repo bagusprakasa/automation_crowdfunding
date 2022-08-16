@@ -8,26 +8,33 @@
 const chai = require("chai");
 const expect = require("chai").expect;
 const chaiHttp = require("chai-http");
-const fs = require("fs");
 chai.use(chaiHttp);
 require("dotenv").config();
+
 const api = chai.request(process.env.URL);
-module.exports = function (attach) {
-  describe("Upload Avatar", function () {
-    it("Success upload avatar", function (done) {
+module.exports = function (
+  name,
+  short_description,
+  description,
+  goal_amount,
+  perks
+) {
+  describe("Store Campaign", function () {
+    it("Success Store Campaign", function (done) {
       api
-        .post("avatars")
-        .set("Content-Type", "multipart/form-data")
+        .post("campaigns")
+        .set("Content-type", "application/json")
         .set("Authorization", "Bearer " + global.token)
-        .attach(
-          "avatar",
-          fs.readFileSync(
-            "C:/Dev/Javascript/automation_crowdfunding/jihyo.jpg"
-          ),
-          "jihyo.jpg"
-        )
+        .send({
+          name: name,
+          short_description: short_description,
+          description: description,
+          goal_amount: goal_amount,
+          perks: perks,
+        })
         .end(function (err, res) {
           expect(res.status).to.equals(200);
+          global.id_campaign = res.body.data.id;
           done();
         });
     });
