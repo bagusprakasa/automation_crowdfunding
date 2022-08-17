@@ -19,13 +19,7 @@ module.exports = function (attach) {
         .post("avatars")
         .set("Content-Type", "multipart/form-data")
         .set("Authorization", "Bearer " + global.token)
-        .attach(
-          "avatar",
-          fs.readFileSync(
-            "C:/Dev/Javascript/automation_crowdfunding/jihyo.jpg"
-          ),
-          "jihyo.jpg"
-        )
+        .attach("avatar", fs.readFileSync("./jihyo.jpg"), "avatar.jpg")
         .end(function (err, res) {
           expect(res.status).to.equals(200);
           done();
